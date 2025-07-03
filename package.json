@@ -1,0 +1,21 @@
+{
+  "name": "smooth-rides-society",
+  "version": "1.0.0",
+  "description": "The Automotive App is a web-based application designed to provide car enthusiasts and potential buyers with a comprehensive platform to explore, manage, and interact with a variety of sports cars. Built using Node.js, Express, and MongoDB, this application offers a user-friendly interface that allows users to perform full CRUD (Create, Read, Update, Delete) operations on car listings while ensuring a secure and engaging experience through session-based authentication.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^17.0.1",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.16.1"
+  }
+}

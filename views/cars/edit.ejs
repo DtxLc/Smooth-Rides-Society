@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit <%= car.brand %> <%= car.model %></title>
+</head>
+<body>
+    <%- include('../partials/header') %>
+    <h1>Edit <%= car.brand %> <%= car.model %></h1>
+    <form action="/cars/<%= car._id %>?_method=PUT" method="POST">
+        <label for="brand">Brand:</label>
+        <input type="text" name="brand" value="<%= car.brand %>" required>
+        <label for="model">Model:</label>
+        <input type="text" name="model" value="<%= car.model %>" required>
+        <label for="year">Year:</label>
+        <input type="number" name="year" value="<%= car.year %>" required>
+        <label for="specs">Specifications:</label>
+        <textarea name="specs" required><%= car.specs %></textarea>
+        <label for="image">Image URL:</label>
+        <input type="text" name="image" value="<%= car.image %>" required>
+        <label for="price">Price:</label>
+        <input type="number" name="price" value="<%= car.price %>" required>
+        <button type="submit">Update Car</button>
+    </form>
+    <a href="/cars/<%= car._id %>">Cancel</a>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= car.brand %> <%= car.model %></title>
+</head>
+<body>
+    <%- include('../partials/header') %>
+    <h1><%= car.brand %> <%= car.model %></h1>
+    <p>Year: <%= car.year %></p>
+    <p>Specifications: <%= car.specs %></p>
+    <p>Price: $<%= car.price %></p>
+    <img src="<%= car.image %>" alt="<%= car.brand %> <%= car.model %>">
+    <a href="/cars">Back to Cars</a>
+</body>
+</html>

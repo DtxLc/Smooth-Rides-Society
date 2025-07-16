@@ -1,5 +1,5 @@
 const express = require('express');
-const Car = require('../models/Car');
+const Car = require('../models/cars');
 const router = express.Router();
 const isAuthenticated = (req, res, next) => {
     if (req.session.userId) {

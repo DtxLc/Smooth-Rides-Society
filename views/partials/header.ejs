@@ -1,12 +1,33 @@
-<header>
-    <nav>
-        <a href="/cars">Home</a>
-        <% if (user) { %>
-            <a href="/cars/new">Add Car</a>
-            <a href="/logout">Logout</a>
-        <% } else { %>
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
-        <% } %>
-    </nav>
+<header class="main-header">
+  <div class="logo">
+    <a href="/">
+      <i class="fas fa-car-side"></i>
+      <span>SuperCars</span>
+    </a>
+  </div>
+
+  <nav class="main-nav">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/cars">Cars</a></li>
+      <li><a href="/about">About</a></li>
+      
+      <% if (currentUser) { %>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle">
+            <img src="<%= currentUser.profilePicture %>" alt="<%= currentUser.username %>" class="profile-pic-small">
+            <%= currentUser.username %>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="/cars/new">Add Car</a></li>
+            <li><a href="/users/<%= currentUser._id %>">My Profile</a></li>
+            <li><a href="/auth/logout">Logout</a></li>
+          </ul>
+        </li>
+      <% } else { %>
+        <li><a href="/auth/login">Login</a></li>
+        <li><a href="/auth/register" class="btn-primary">Register</a></li>
+      <% } %>
+    </ul>
+  </nav>
 </header>

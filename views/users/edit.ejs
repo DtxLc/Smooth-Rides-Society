@@ -1,0 +1,71 @@
+<section class="form-section">
+  <h1>Edit Profile</h1>
+  
+  <div class="form-container">
+    <form action="/users/<%= user._id %>?_method=PUT" method="POST" class="profile-form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          required 
+          value="<%= user.email %>"
+          autofocus
+        >
+      </div>
+      
+      <div class="form-group">
+        <label for="profilePicture">Profile Picture URL</label>
+        <input 
+          type="url" 
+          id="profilePicture" 
+          name="profilePicture"
+          placeholder="https://example.com/image.jpg"
+          value="<%= user.profilePicture %>"
+        >
+        <div class="profile-picture-preview">
+          <img src="<%= user.profilePicture %>" alt="Profile Picture Preview" id="profile-preview">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="bio">Bio</label>
+        <textarea 
+          id="bio" 
+          name="bio" 
+          rows="4"
+          maxlength="200"
+        ><%= user.bio %></textarea>
+        <div class="char-count">
+          <span id="bio-char-count">0</span>/200
+        </div>
+      </div>
+      
+      <div class="form-actions">
+        <a href="/users/<%= user._id %>" class="btn-secondary">Cancel</a>
+        <button type="submit" class="btn-primary">Update Profile</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script>
+  // Preview profile picture
+  const profilePictureInput = document.getElementById('profilePicture');
+  const profilePreview = document.getElementById('profile-preview');
+  
+  profilePictureInput.addEventListener('input', function() {
+    profilePreview.src = this.value || '/images/default-profile.png';
+  });
+  
+  // Character counter for bio
+  const bioTextarea = document.getElementById('bio');
+  const bioCharCount = document.getElementById('bio-char-count');
+  
+  bioCharCount.textContent = bioTextarea.value.length;
+  
+  bioTextarea.addEventListener('input', function() {
+    bioCharCount.textContent = this.value.length;
+  });
+</script>

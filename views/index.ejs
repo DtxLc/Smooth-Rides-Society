@@ -3,51 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smooth Rides Society</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <!-- Navigation -->
-    <nav class="main-nav">
-        <div class="nav-container">
-            <div class="nav-logo-group">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTS-OLFaidDZ_X-oJT9QiXWjxG5uquH2ySSg&s" alt="Smooth Rides Society Logo" class="nav-logo">
-                <span class="nav-title">Smooth Rides Society</span>
-            </div>
-            <div class="nav-links">
-                <a href="/users/login" class="nav-link-button login-button">Login</a>
-                <a href="/users/register" class="nav-link-button register-button">Register</a>
-            </div>
-        </div>
-    </nav>
-    <!-- Hero Section -->
-    <div class="hero-section">
-        <img src="https://performancegarage.com.au/images/blog/6/Red_CentreNATS_Cars.jpeg" alt="Classic car show" class="hero-image">
-        <div class="hero-overlay">
-            <div class="hero-content">
-                <h1 class="hero-title">Welcome to Smooth Rides Society</h1>
-                <p class="hero-description">Track and share your favorite rides with fellow enthusiasts.</p>
-                <a href="/cars" class="hero-button">View Cars</a>
-            </div>
-        </div>
+    <section class="hero">
+  <div class="hero-content">
+    <h1>Welcome to Smooth Rides Society</h1>
+    <p>Discover, share, and explore the world's most exciting sports cars</p>
+    <div class="hero-buttons">
+      <a href="/cars" class="btn-primary">Browse Cars</a>
+      <% if (!currentUser) { %>
+        <a href="/auth/register" class="btn-secondary">Join Now</a>
+      <% } else { %>
+        <a href="/cars/new" class="btn-secondary">Add Your Car</a>
+      <% } %>
     </div>
-    <!-- Main Content -->
-    <div class="main-content-container">
-        <h2 class="section-title">About Us</h2>
-        <p class="section-paragraph">
-            Smooth Rides Society is a community for car enthusiasts to connect, share, and manage their favorite cars. Whether you're a collector, a racer, or just someone who appreciates beautiful automobiles, this is the place for you!
-        </p>
-        <p class="section-paragraph">
-            Join us to track your rides, share experiences, and connect with like-minded individuals. Sign up today and start your journey with us!
-        </p>
+  </div>
+</section>
+
+<section class="featured-cars">
+  <h2>Featured Cars</h2>
+  
+  <div class="car-grid">
+    <% if (featuredCars.length > 0) { %>
+      <% featuredCars.forEach(car => { %>
+        <div class="car-card">
+          <div class="car-image">
+            <img src="<%= car.imageUrl %>" alt="<%= car.year %> <%= car.make %> <%= car.model %>">
+          </div>
+          <div class="car-details">
+            <h3><%= car.year %> <%= car.make %> <%= car.model %></h3>
+            <p class="car-price"><%= car.formattedPrice %></p>
+            <div class="car-specs">
+              <span><i class="fas fa-tachometer-alt"></i> <%= car.horsepower %> HP</span>
+              <% if (car.topSpeed) { %>
+                <span><i class="fas fa-gauge-high"></i> <%= car.topSpeed %> mph</span>
+              <% } %>
+            </div>
+            <p class="car-owner">Added by <a href="/users/<%= car.owner._id %>"><%= car.owner.username %></a></p>
+            <a href="/cars/<%= car._id %>" class="btn-secondary">View Details</a>
+          </div>
+        </div>
+      <% }) %>
+    <% } else { %>
+      <p class="no-cars">No cars have been added yet. Be the first to <a href="/cars/new">add a car</a>!</p>
+    <% } %>
+  </div>
+  
+  <div class="view-all">
+    <a href="/cars" class="btn-primary">View All Cars</a>
+  </div>
+</section>
+
+<section class="features">
+  <h2>Why Choose SRS?</h2>
+  
+  <div class="features-grid">
+    <div class="feature">
+      <i class="fas fa-car"></i>
+      <h3>Extensive Collection</h3>
+      <p>Browse through our extensive collection of sports cars from around the world.</p>
     </div>
+    
+    <div class="feature">
+      <i class="fas fa-users"></i>
+      <h3>Community</h3>
+      <p>Join a community of sports car enthusiasts and share your passion.</p>
+    </div>
+    
+    <div class="feature">
+      <i class="fas fa-info-circle"></i>
+      <h3>Detailed Information</h3>
+      <p>Get detailed specifications and information about each sports car.</p>
+    </div>
+    
+    <div class="feature">
+      <i class="fas fa-mobile-alt"></i>
+      <h3>Mobile Friendly</h3>
+      <p>Access SRS from any device, anywhere, anytime.</p>
+    </div>
+  </div>
+</section>
     <!-- Footer -->
     <footer class="main-footer">
         <div class="footer-container">
             <p>&copy; 2025 Smooth Rides Society. All rights reserved.</p>
         </div>
     </footer>
-    <script src="/script.js"></script>
+    <script src="/db.js"></script>
 </body>
 </html>

@@ -1,0 +1,58 @@
+<section class="profile-section">
+  <div class="profile-header">
+    <div class="profile-image">
+      <img src="<%= profileUser.profilePicture %>" alt="<%= profileUser.username %>" class="profile-pic-large">
+    </div>
+    
+    <div class="profile-info">
+      <h1><%= profileUser.username %></h1>
+      <p class="profile-email"><%= profileUser.email %></p>
+      
+      <% if (profileUser.bio) { %>
+        <p class="profile-bio"><%= profileUser.bio %></p>
+      <% } %>
+      
+      <p class="profile-member-since">Member since <%= new Date(profileUser.createdAt).toLocaleDateString() %></p>
+      
+      <% if (isOwnProfile) { %>
+        <a href="/users/<%= profileUser._id %>/edit" class="btn-secondary">
+          <i class="fas fa-edit"></i> Edit Profile
+        </a>
+      <% } %>
+    </div>
+  </div>
+  
+  <div class="profile-cars">
+    <h2><%= profileUser.username %>'s Cars</h2>
+    
+    <% if (cars.length > 0) { %>
+      <div class="car-grid">
+        <% cars.forEach(car => { %>
+          <div class="car-card">
+            <div class="car-image">
+              <img src="<%= car.imageUrl %>" alt="<%= car.year %> <%= car.make %> <%= car.model %>">
+            </div>
+            <div class="car-details">
+              <h3><%= car.year %> <%= car.make %> <%= car.model %></h3>
+              <p class="car-price"><%= car.formattedPrice %></p>
+              <div class="car-specs">
+                <span><i class="fas fa-tachometer-alt"></i> <%= car.horsepower %> HP</span>
+                <% if (car.topSpeed) { %>
+                  <span><i class="fas fa-gauge-high"></i> <%= car.topSpeed %> mph</span>
+                <% } %>
+              </div>
+              <a href="/cars/<%= car._id %>" class="btn-secondary">View Details</a>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <p class="no-cars">
+        <%= isOwnProfile ? 'You haven\'t' : `${profileUser.username} hasn't` %> added any cars yet.
+        <% if (isOwnProfile) { %>
+          <a href="/cars/new">Add your first car</a>!
+        <% } %>
+      </p>
+    <% } %>
+  </div>
+</section>

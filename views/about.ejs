@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><section class="about-section">
+  <h1>About Smooth Rides Society</h1>
+  
+  <div class="about-content">
+    <div class="about-image">
+      <img src="">
+    </div>
+    
+    <div class="about-text">
+      <h2>Our Mission</h2>
+      <p>
+        Smooth Rides Society is dedicated to creating the ultimate platform for sports car enthusiasts. 
+        Our mission is to connect people who share a passion for high-performance automobiles 
+        and provide a space where they can showcase their prized possessions.
+      </p>
+      
+      <h2>What We Offer</h2>
+      <p>
+        Our platform allows users to create detailed profiles of their sports cars, 
+        complete with specifications, images, and personal stories. Whether you own a 
+        classic Ford, a modern Lamborghini, or a custom-built supercar, Smooth Rides Society 
+        is the perfect place to share your automotive pride and joy.
+      </p>
+      
+      <h2>Join Our Community</h2>
+      <p>
+        By joining Smooth Rides Society, you become part of a global community of like-minded 
+        enthusiasts. Browse through an extensive collection of the world's most 
+        exciting vehicles, connect with other owners, and stay updated on the latest 
+        in the world of high-performance automobiles.
+      </p>
+      
+      <div class="cta-buttons">
+        <a href="/cars" class="btn-primary">Browse Cars</a>
+        <% if (!currentUser) { %>
+          <a href="/auth/register" class="btn-secondary">Join Now</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</section>

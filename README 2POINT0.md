@@ -35,7 +35,7 @@ Check out the live demo: [Smooth Rides Society App]()
 
 1. Clone the repository:
    \`\`\`
-   git clone https://github.com/yourusername/Smooth Rides Society-app.git
+   git clone https://github.com/DtxLc/Smooth-Rides-Society.git
    cd Smooth Rides Society-app
    \`\`\`
 
@@ -66,7 +66,7 @@ Check out the live demo: [Smooth Rides Society App]()
 
 ## Planning Materials
 
-- [Project Planning Document](https://trello.com/b/gMWa4V2W/smooth-rides-society)
+- [Trello](https://trello.com/b/gMWa4V2W/smooth-rides-society)
 - [Wireframes]()
 - [ERD Diagram]()
 

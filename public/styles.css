@@ -530,9 +530,6 @@ main {
   padding: 3rem 2rem;
   text-align: center;
   transition: var(--transition-smooth);
-  backdrop-filter: blur(10px);
-  position: relative;
-  overflow: hidden;
 }
 
 .feature::before {

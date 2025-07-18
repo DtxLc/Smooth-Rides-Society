@@ -93,15 +93,7 @@ h1 {
   font-family: "Orbitron", monospace;
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 900;
-  background: linear-gradient(
-    135deg,
-    var(--text-primary) 0%,
-    var(--accent-cyan) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: var(--glow-primary);
+  color: var(--text-primary);
 }
 
 h2 {

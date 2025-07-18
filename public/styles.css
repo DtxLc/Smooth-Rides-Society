@@ -348,7 +348,7 @@ main {
     radial-gradient(2px 2px at 160px 30px, rgba(6, 182, 212, 0.2), transparent);
   background-repeat: repeat;
   background-size: 200px 100px;
-  animation: sparkle 8s linear infinite;
+
   pointer-events: none;
 }
 

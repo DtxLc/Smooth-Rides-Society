@@ -742,17 +742,10 @@ a:focus {
 .back-to-home:hover {
   color: var(--accent-cyan);
   background: var(--surface-tertiary);
-  transform: translateX(-3px);
-  text-shadow: 0 0 5px var(--accent-cyan);
 }
 
 .back-to-home i {
   font-size: 0.8rem;
-  transition: var(--transition-smooth);
-}
-
-.back-to-home:hover i {
-  transform: translateX(-2px);
 }
 
 .auth-header h1 {

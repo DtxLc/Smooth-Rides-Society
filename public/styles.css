@@ -141,8 +141,6 @@ main {
   cursor: pointer;
   transition: var(--transition-smooth);
   position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
 }
 
 .btn-primary {

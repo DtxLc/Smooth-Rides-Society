@@ -497,7 +497,6 @@ main {
   border-radius: var(--border-radius-lg);
   padding: 3rem 2rem;
   text-align: center;
-  transition: var(--transition-smooth);
 }
 
 .feature::before {

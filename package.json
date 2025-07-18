@@ -5,7 +5,9 @@
   "description": "The Automotive App is a web-based application designed to provide car enthusiasts and potential buyers with a comprehensive platform to explore, manage, and interact with a variety of sports cars. Built using Node.js, Express, and MongoDB, this application offers a user-friendly interface that allows users to perform full CRUD (Create, Read, Update, Delete) operations on car listings while ensuring a secure and engaging experience through session-based authentication.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",

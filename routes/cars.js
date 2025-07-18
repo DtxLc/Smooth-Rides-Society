@@ -1,19 +1,27 @@
 const express = require("express");
-const Car = require("../models/cars"); 
-const { isLoggedIn, isOwner } = require("../middleware/auth"); 
+const Car = require("../models/cars");
+const { isLoggedIn, isOwner } = require("../middleware/auth");
 
 const router = express.Router();
 
 // Index - Show all cars
 router.get("/", async (req, res) => {
   try {
-    const cars = await Car.find().sort({ createdAt: -1 }).populate("owner", "username");
+    let cars = [];
+
+    // Only query database if MongoDB is connected
+    if (process.env.MONGODB_URI) {
+      cars = await Car.find()
+        .sort({ createdAt: -1 })
+        .populate("owner", "username");
+    }
 
     res.render("cars/index", {
       title: "All Sports Cars",
       cars,
     });
   } catch (err) {
+    console.error("Error on cars route:", err);
     res.status(500).render("error", { title: "Error", error: err });
   }
 });
@@ -26,7 +34,18 @@ router.get("/new", isLoggedIn, (req, res) => {
 // Create - Add new car to DB
 router.post("/", isLoggedIn, async (req, res) => {
   try {
-    const { make, model, year, color, price, horsepower, topSpeed, zeroToSixty, description, imageUrl } = req.body;
+    const {
+      make,
+      model,
+      year,
+      color,
+      price,
+      horsepower,
+      topSpeed,
+      zeroToSixty,
+      description,
+      imageUrl,
+    } = req.body;
 
     const newCar = new Car({
       make,
@@ -56,7 +75,10 @@ router.post("/", isLoggedIn, async (req, res) => {
 // Show - Show info about one specific car
 router.get("/:id", async (req, res) => {
   try {
-    const car = await Car.findById(req.params.id).populate("owner", "username profilePicture");
+    const car = await Car.findById(req.params.id).populate(
+      "owner",
+      "username profilePicture",
+    );
 
     if (!car) {
       return res.status(404).render("404", { title: "Car Not Found" });
@@ -65,7 +87,8 @@ router.get("/:id", async (req, res) => {
     res.render("cars/show", {
       title: `${car.year} ${car.make} ${car.model}`,
       car,
-      isOwner: req.session.user && req.session.user._id === car.owner._id.toString(),
+      isOwner:
+        req.session.user && req.session.user._id === car.owner._id.toString(),
     });
   } catch (err) {
     res.status(500).render("error", { title: "Error", error: err });
@@ -89,7 +112,18 @@ router.get("/:id/edit", isLoggedIn, isOwner(Car), async (req, res) => {
 // Update - Update a car
 router.put("/:id", isLoggedIn, isOwner(Car), async (req, res) => {
   try {
-    const { make, model, year, color, price, horsepower, topSpeed, zeroToSixty, description, imageUrl } = req.body;
+    const {
+      make,
+      model,
+      year,
+      color,
+      price,
+      horsepower,
+      topSpeed,
+      zeroToSixty,
+      description,
+      imageUrl,
+    } = req.body;
 
     const updatedCar = await Car.findByIdAndUpdate(
       req.params.id,
@@ -128,4 +162,4 @@ router.delete("/:id", isLoggedIn, isOwner(Car), async (req, res) => {
   }
 });
 
-module.exports = router
+module.exports = router;

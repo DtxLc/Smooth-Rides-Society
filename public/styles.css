@@ -204,7 +204,6 @@ main {
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--text-primary);
-  transition: var(--transition-smooth);
 }
 
 .logo i {

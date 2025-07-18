@@ -17,10 +17,17 @@ const PORT = process.env.PORT || 3000;
 //const __dirname = path.resolve(); //current directory
 
 // Connect to MongoDB
-mongoose
-  .connect(process.env.MONGODB_URI)
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+if (process.env.MONGODB_URI) {
+  mongoose
+    .connect(process.env.MONGODB_URI)
+    .then(() => console.log("Connected to MongoDB"))
+    .catch((err) => {
+      console.error("MongoDB connection error:", err.message);
+      console.log("App will continue without database functionality");
+    });
+} else {
+  console.log("No MongoDB URI provided, running without database");
+}
 
 // Middleware
 app.use(express.static(path.join(__dirname, "public")));
@@ -33,30 +40,34 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 // Session configuration
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET || "super-secret-key",
-    resave: false,
-    saveUninitialized: false,
-    store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI,
-      ttl: 14 * 24 * 60 * 60, // 14 days
-    }),
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
-    },
-  })
-);
+const sessionConfig = {
+  secret: process.env.SESSION_SECRET || "super-secret-key",
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+  },
+};
+
+// Only use MongoDB store if URI is provided
+if (process.env.MONGODB_URI) {
+  sessionConfig.store = MongoStore.create({
+    mongoUrl: process.env.MONGODB_URI,
+    ttl: 14 * 24 * 60 * 60, // 14 days
+  });
+}
+
+app.use(session(sessionConfig));
 
 // Make user data available to all templates
 app.use((req, res, next) => {
-  res.locals.currentUser  = req.session.user || null;
+  res.locals.currentUser = req.session.user || null;
   next();
 });
 
 // Import routes
-const indexRoutes = require("./routes/index"); 
-const authRoutes = require("./routes/auth"); 
+const indexRoutes = require("./routes/index");
+const authRoutes = require("./routes/auth");
 const carRoutes = require("./routes/cars");
 const userRoutes = require("./routes/users");
 

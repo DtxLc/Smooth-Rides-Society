@@ -1,34 +1,106 @@
-<section class="cars-section">
-  <div class="section-header">
-    <h1>All Sports Cars</h1>
-    <% if (currentUser) { %>
-      <a href="/cars/new" class="btn-primary">Add New Car</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> | Smooth Rides Society</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <%- include('../partials/header') %>
+    
+    <% if (locals.error) { %>
+      <div class="alert alert-error">
+        <%= error %>
+      </div>
     <% } %>
-  </div>
-  
-  <div class="car-grid">
-    <% if (cars.length > 0) { %>
-      <% cars.forEach(car => { %>
-        <div class="car-card">
-          <div class="car-image">
-            <img src="<%= car.imageUrl %>" alt="<%= car.year %> <%= car.make %> <%= car.model %>">
+    
+    <% if (locals.success) { %>
+      <div class="alert alert-success">
+        <%= success %>
+      </div>
+    <% } %>
+    
+    <main>
+      <section class="section">
+                <div class="section-container">
+          <div class="section-header">
+            <a href="/" class="back-to-home" style="margin-bottom: 2rem;">
+              <i class="fas fa-arrow-left"></i>
+              <span>Back to Home</span>
+            </a>
+            <h1>All Sports Cars</h1>
+            <p>Discover our complete collection of automotive excellence</p>
+            <% if (currentUser) { %>
+              <div style="margin-top: 2rem;">
+                <a href="/cars/new" class="btn-primary">
+                  <i class="fas fa-plus"></i>
+                  Add New Car
+                </a>
+              </div>
+            <% } %>
           </div>
-          <div class="car-details">
-            <h3><%= car.year %> <%= car.make %> <%= car.model %></h3>
-            <p class="car-price"><%= car.formattedPrice %></p>
-            <div class="car-specs">
-              <span><i class="fas fa-tachometer-alt"></i> <%= car.horsepower %> HP</span>
-              <% if (car.topSpeed) { %>
-                <span><i class="fas fa-gauge-high"></i> <%= car.topSpeed %> mph</span>
-              <% } %>
-            </div>
-            <p class="car-owner">Added by <a href="/users/<%= car.owner._id %>"><%= car.owner.username %></a></p>
-            <a href="/cars/<%= car._id %>" class="btn-secondary">View Details</a>
+          
+          <div class="car-grid">
+            <% if (cars && cars.length > 0) { %>
+              <% cars.forEach(car => { %>
+                <div class="car-card">
+                  <div class="car-image">
+                    <img src="<%= car.imageUrl || car.image || '/images/default-car.jpg' %>" alt="<%= car.year %> <%= car.make %> <%= car.model %>">
+                  </div>
+                  <div class="car-details">
+                    <h3><%= car.year %> <%= car.make %> <%= car.model %></h3>
+                    <p class="car-price"><%= car.formattedPrice || '$' + (car.price ? car.price.toLocaleString() : 'N/A') %></p>
+                    <div class="car-specs">
+                      <span>
+                        <i class="fas fa-tachometer-alt"></i>
+                        <%= car.horsepower || car.horsePower || 'N/A' %> HP
+                      </span>
+                      <% if (car.topSpeed) { %>
+                        <span>
+                          <i class="fas fa-gauge-high"></i>
+                          <%= car.topSpeed %> mph
+                        </span>
+                      <% } %>
+                      <% if (car.zeroToSixty) { %>
+                        <span>
+                          <i class="fas fa-stopwatch"></i>
+                          <%= car.zeroToSixty %>s 0-60
+                        </span>
+                      <% } %>
+                    </div>
+                    <% if (car.owner && car.owner.username) { %>
+                      <p class="car-owner">Added by <a href="/users/<%= car.owner._id %>"><%= car.owner.username %></a></p>
+                    <% } %>
+                    <a href="/cars/<%= car._id %>" class="btn-secondary">
+                      <i class="fas fa-eye"></i>
+                      View Details
+                    </a>
+                  </div>
+                </div>
+              <% }) %>
+            <% } else { %>
+              <div class="no-cars">
+                <i class="fas fa-car" style="font-size: 3rem; color: var(--accent-cyan); margin-bottom: 1rem; display: block;"></i>
+                <p>No cars have been added yet. 
+                  <% if (currentUser) { %>
+                    Be the first to <a href="/cars/new">add a car</a>!
+                  <% } else { %>
+                    <a href="/auth/login">Login</a> to add a car.
+                  <% } %>
+                </p>
+              </div>
+            <% } %>
           </div>
         </div>
-      <% }) %>
-    <% } else { %>
-      <p class="no-cars">No cars have been added yet. <% if (currentUser) { %>Be the first to <a href="/cars/new">add a car</a>!<% } else { %><a href="/auth/login">Login</a> to add a car.<% } %></p>
-    <% } %>
+      </section>
+    </main>
+    
+    <%- include('../partials/footer') %>
   </div>
-</section>
+  
+  <script src="/main.js"></script>
+</body>
+</html>

@@ -948,7 +948,6 @@ a:focus {
   color: var(--accent-cyan);
   text-decoration: none;
   font-weight: 600;
-  transition: var(--transition-fast);
 }
 
 .owner-info a:hover {

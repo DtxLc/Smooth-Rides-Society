@@ -502,15 +502,6 @@ main {
   transition: var(--transition-smooth);
 }
 
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
 .feature:hover::before {
   opacity: 0.1;
 }

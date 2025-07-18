@@ -500,7 +500,6 @@ main {
   background: radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%);
   opacity: 0;
   transition: var(--transition-smooth);
-  animation: rotate 10s linear infinite;
 }
 
 @keyframes rotate {

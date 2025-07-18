@@ -21,9 +21,9 @@ The application is built using Node.js, Express, MongoDB, and EJS templates, fol
 
 ## Screenshots
 
-![Home Page]()
-![Car Details]()
-![User Profile]()
+![Home Page]("http://localhost:3000/")
+![Car Details]("http://localhost:3000/cars")
+![User Profile]("")
 
 ## Getting Started
 
@@ -34,33 +34,33 @@ Check out the live demo: [Smooth Rides Society App]()
 ### Installation
 
 1. Clone the repository:
-   \`\`\`
+   ```
    git clone https://github.com/DtxLc/Smooth-Rides-Society.git
    cd Smooth Rides Society-app
-   \`\`\`
+   
 
 2. Install dependencies:
-   \`\`\`
+   ```
    npm install
-   \`\`\`
+   
 
 3. Create a `.env` file in the root directory with the following variables:
-   \`\`\`
+   ```
    PORT=3000
    MONGODB_URI=mongodb://localhost:27017/Smooth Rides Society
    SESSION_SECRET=your_session_secret_here
    NODE_ENV=development
-   \`\`\`
+   ```
 
 4. Seed the database (optional):
-   \`\`\`
+   ```
    node scripts/seed.js
-   \`\`\`
+   ```
 
 5. Start the application:
-   \`\`\`
+   ```
    npm start
-   \`\`\`
+   ```
 
 6. Open your browser and navigate to `http://localhost:3000`
 

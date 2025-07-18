@@ -53,17 +53,18 @@ router.post("/", isLoggedIn, async (req, res) => {
       year: Number.parseInt(year),
       color,
       price: Number.parseFloat(price),
-      horsepower: Number.parseInt(horsepower),
+      horsePower: Number.parseInt(horsepower),
       topSpeed: topSpeed ? Number.parseFloat(topSpeed) : undefined,
       zeroToSixty: zeroToSixty ? Number.parseFloat(zeroToSixty) : undefined,
       description,
-      imageUrl: imageUrl || undefined,
+      image: imageUrl || undefined,
       owner: req.session.user._id,
     });
 
     await newCar.save();
     res.redirect(`/cars/${newCar._id}`);
   } catch (err) {
+    console.log(err)
     res.render("cars/new", {
       title: "Add New Car",
       error: "Error creating car. Please check all fields.",

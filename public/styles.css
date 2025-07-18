@@ -274,7 +274,6 @@ main {
   display: block;
   padding: 0.75rem 1rem;
   border-radius: 8px;
-  transition: var(--transition-fast);
 }
 
 .dropdown-menu a:hover {

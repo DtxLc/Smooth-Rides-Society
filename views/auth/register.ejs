@@ -1,11 +1,37 @@
-<section class="auth-section">
-  <div class="auth-header">
-    <a href="/" class="back-to-home">
-      <i class="fas fa-arrow-left"></i>
-      <span>Back to Home</span>
-    </a>
-    <h1>Create an Account</h1>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> | Smooth Rides Society</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+    <%- include('../partials/header') %>
+
+    <% if (locals.error) { %>
+      <div class="alert alert-error">
+        <%= error %>
+      </div>
+    <% } %>
+
+    <% if (locals.success) { %>
+      <div class="alert alert-success">
+        <%= success %>
+      </div>
+    <% } %>
+
+    <main>
+      <section class="auth-section">
+        <div class="auth-header">
+          <a href="/" class="back-to-home">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Home</span>
+          </a>
+          <h1>Create an Account</h1>
+        </div>
   
   <div class="auth-container">
     <form action="/auth/register" method="POST" class="auth-form">
@@ -57,8 +83,16 @@
       <button type="submit" class="btn-primary btn-block">Register</button>
     </form>
     
-    <div class="auth-links">
-      <p>Already have an account? <a href="/auth/login">Login</a></p>
-    </div>
+            <div class="auth-links">
+          <p>Already have an account? <a href="/auth/login">Login</a></p>
+        </div>
+      </div>
+    </section>
+    </main>
+
+    <%- include('../partials/footer') %>
   </div>
-</section>
+
+  <script src="/main.js"></script>
+</body>
+</html>

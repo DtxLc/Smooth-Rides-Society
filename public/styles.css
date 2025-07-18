@@ -735,8 +735,6 @@ a:focus {
   border-radius: var(--border-radius);
   background: var(--surface-glass);
   border: var(--border-primary);
-  backdrop-filter: blur(10px);
-  transition: var(--transition-smooth);
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
 }

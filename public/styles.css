@@ -236,22 +236,6 @@ main {
   background: var(--surface-glass);
 }
 
-.main-nav a::before {
-  content: "";
-  position: absolute;
-  bottom: -5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  background: var(--accent-cyan);
-  transition: var(--transition-smooth);
-}
-
-.main-nav a:hover::before {
-  width: 100%;
-}
-
 /* Dropdown Enhancement */
 .dropdown {
   position: relative;

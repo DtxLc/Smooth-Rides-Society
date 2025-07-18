@@ -1,139 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit <%= car.brand %> <%= car.model %></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> | Smooth Rides Society</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="/styles.css">
 </head>
-<section class="form-section">
- <div class="form-container">
-    <form action="/cars/<%= car._id %>?_method=PUT" method="POST" class="car-form">
-      <div class="form-group">
-        <label for="make">Make</label>
-        <input 
-          type="text" 
-          id="make" 
-          name="make" 
-          required 
-          value="<%= car.make %>"
-          autofocus
-        >
+<body>
+  <div class="container">
+    <%- include('../partials/header') %>
+    
+    <% if (locals.error) { %>
+      <div class="alert alert-error">
+        <%= error %>
       </div>
-      
-      <div class="form-group">
-        <label for="model">Model</label>
-        <input 
-          type="text" 
-          id="model" 
-          name="model" 
-          required
-          value="<%= car.model %>"
-        >
+    <% } %>
+    
+    <% if (locals.success) { %>
+      <div class="alert alert-success">
+        <%= success %>
       </div>
-      
-      <div class="form-row">
-        <div class="form-group">
-          <label for="year">Year</label>
-          <input 
-            type="number" 
-            id="year" 
-            name="year" 
-            required
-            min="1885"
-            max="<%= new Date().getFullYear() + 1 %>"
-            value="<%= car.year %>"
-          >
+    <% } %>
+    
+    <main>
+      <section class="section">
+        <div class="section-container">
+          <div class="auth-header">
+            <a href="/cars/<%= car._id %>" class="back-to-home">
+              <i class="fas fa-arrow-left"></i>
+              <span>Back to Car</span>
+            </a>
+            <h1>Edit <%= car.year %> <%= car.make %> <%= car.model %></h1>
+          </div>
+          
+          <div class="auth-container">
+            <form action="/cars/<%= car._id %>?_method=PUT" method="POST" class="auth-form">
+              <div class="form-group">
+                <label for="make">Make</label>
+                <input 
+                  type="text" 
+                  id="make" 
+                  name="make" 
+                  required 
+                  value="<%= car.make %>"
+                  autofocus
+                >
+              </div>
+              
+              <div class="form-group">
+                <label for="model">Model</label>
+                <input 
+                  type="text" 
+                  id="model" 
+                  name="model" 
+                  required
+                  value="<%= car.model %>"
+                >
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="year">Year</label>
+                  <input 
+                    type="number" 
+                    id="year" 
+                    name="year" 
+                    required
+                    min="1885"
+                    max="<%= new Date().getFullYear() + 1 %>"
+                    value="<%= car.year %>"
+                  >
+                </div>
+                
+                <div class="form-group">
+                  <label for="color">Color</label>
+                  <input 
+                    type="text" 
+                    id="color" 
+                    name="color" 
+                    required
+                    value="<%= car.color %>"
+                  >
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="price">Price ($)</label>
+                  <input 
+                    type="number" 
+                    id="price" 
+                    name="price" 
+                    required
+                    min="0"
+                    step="0.01"
+                    value="<%= car.price %>"
+                  >
+                </div>
+                
+                <div class="form-group">
+                  <label for="horsepower">Horsepower</label>
+                  <input 
+                    type="number" 
+                    id="horsepower" 
+                    name="horsepower" 
+                    required
+                    min="0"
+                    value="<%= car.horsepower %>"
+                  >
+                </div>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="topSpeed">Top Speed (mph)</label>
+                  <input 
+                    type="number" 
+                    id="topSpeed" 
+                    name="topSpeed"
+                    min="0"
+                    step="0.1"
+                    value="<%= car.topSpeed || '' %>"
+                  >
+                </div>
+                
+                <div class="form-group">
+                  <label for="zeroToSixty">0-60 mph (seconds)</label>
+                  <input 
+                    type="number" 
+                    id="zeroToSixty" 
+                    name="zeroToSixty"
+                    min="0"
+                    step="0.1"
+                    value="<%= car.zeroToSixty || '' %>"
+                  >
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="imageUrl">Image URL</label>
+                <input 
+                  type="url" 
+                  id="imageUrl" 
+                  name="imageUrl"
+                  placeholder="https://example.com/image.jpg"
+                  value="<%= car.imageUrl || car.image || '' %>"
+                >
+              </div>
+              
+              <div class="form-group">
+                <label for="description">Description</label>
+                <textarea 
+                  id="description" 
+                  name="description" 
+                  rows="4"
+                ><%= car.description || '' %></textarea>
+              </div>
+              
+              <div class="form-actions" style="display: flex; gap: 1rem; justify-content: space-between; margin-top: 2rem;">
+                <a href="/cars/<%= car._id %>" class="btn-secondary">
+                  <i class="fas fa-times"></i>
+                  Cancel
+                </a>
+                <button type="submit" class="btn-primary">
+                  <i class="fas fa-save"></i>
+                  Update Car
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-        
-        <div class="form-group">
-          <label for="color">Color</label>
-          <input 
-            type="text" 
-            id="color" 
-            name="color" 
-            required
-            value="<%= car.color %>"
-          >
-        </div>
-      </div>
-      
-      <div class="form-row">
-        <div class="form-group">
-          <label for="price">Price ($)</label>
-          <input 
-            type="number" 
-            id="price" 
-            name="price" 
-            required
-            min="0"
-            step="0.01"
-            value="<%= car.price %>"
-          >
-        </div>
-        
-        <div class="form-group">
-          <label for="horsepower">Horsepower</label>
-          <input 
-            type="number" 
-            id="horsepower" 
-            name="horsepower" 
-            required
-            min="0"
-            value="<%= car.horsepower %>"
-          >
-        </div>
-      </div>
-      
-      <div class="form-row">
-        <div class="form-group">
-          <label for="topSpeed">Top Speed (mph)</label>
-          <input 
-            type="number" 
-            id="topSpeed" 
-            name="topSpeed"
-            min="0"
-            step="0.1"
-            value="<%= car.topSpeed %>"
-          >
-        </div>
-        
-        <div class="form-group">
-          <label for="zeroToSixty">0-60 mph (seconds)</label>
-          <input 
-            type="number" 
-            id="zeroToSixty" 
-            name="zeroToSixty"
-            min="0"
-            step="0.1"
-            value="<%= car.zeroToSixty %>"
-          >
-        </div>
-      </div>
-      
-      <div class="form-group">
-        <label for="imageUrl">Image URL</label>
-        <input 
-          type="url" 
-          id="imageUrl" 
-          name="imageUrl"
-          placeholder="https://example.com/image.jpg"
-          value="<%= car.imageUrl %>"
-        >
-      </div>
-      
-      <div class="form-group">
-        <label for="description">Description</label>
-        <textarea 
-          id="description" 
-          name="description" 
-          rows="5"
-        ><%= car.description %></textarea>
-      </div>
-      
-      <div class="form-actions">
-        <a href="/cars/<%= car._id %>" class="btn-secondary">Cancel</a>
-        <button type="submit" class="btn-primary">Update Car</button>
-      </div>
-    </form>
+      </section>
+    </main>
+    
+    <%- include('../partials/footer') %>
   </div>
-</section>
+  
+  <script src="/main.js"></script>
+</body>
+</html>

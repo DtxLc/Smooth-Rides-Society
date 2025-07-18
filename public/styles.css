@@ -175,7 +175,6 @@ main {
 .btn-outline:hover {
   background: var(--accent-cyan);
   color: var(--surface-primary);
-  box-shadow: var(--glow-accent);
 }
 
 /* Modern Header */

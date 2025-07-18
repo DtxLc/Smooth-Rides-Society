@@ -296,7 +296,10 @@ main {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: #ffffff;
+  background:linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://performancegarage.com.au/images/blog/6/Red_CentreNATS_Cars.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .hero-content {
@@ -306,13 +309,13 @@ main {
 
 .hero h1 {
   margin-bottom: 1.5rem;
-  color: #1f2937;
+  color: #ffffff;
 }
 
 .hero p {
   font-size: 1.5rem;
   margin-bottom: 3rem;
-  color: #6b7280;
+  color: #f3f4f6;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;

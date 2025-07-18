@@ -21,7 +21,7 @@ The application is built using Node.js, Express, MongoDB, and EJS templates, fol
 
 ## Screenshots
 
-![Home Page]("http://localhost:3000/")
+![Home Page]("https://smooth-rides-society-5a638bfef63f.herokuapp.com/")
 ![Car Details]("http://localhost:3000/cars")
 ![User Profile]("")
 
@@ -29,7 +29,7 @@ The application is built using Node.js, Express, MongoDB, and EJS templates, fol
 
 ### Live Demo
 
-Check out the live demo: [Smooth Rides Society App]()
+Check out the live demo: [Smooth Rides Society App](https://smooth-rides-society-5a638bfef63f.herokuapp.com/)
 
 ### Installation
 

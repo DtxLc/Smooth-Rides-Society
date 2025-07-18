@@ -352,15 +352,6 @@ main {
   pointer-events: none;
 }
 
-@keyframes sparkle {
-  0% {
-    transform: translateY(0px);
-  }
-  100% {
-    transform: translateY(-100px);
-  }
-}
-
 /* Section Styling */
 .section {
   padding: 8rem 0;

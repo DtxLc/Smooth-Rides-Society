@@ -309,7 +309,6 @@ main {
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--accent-cyan);
-  filter: drop-shadow(0 0 5px var(--accent-cyan));
 }
 
 /* Stunning Hero Section */

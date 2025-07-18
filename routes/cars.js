@@ -1,5 +1,5 @@
 const express = require("express");
-const Car = require("../models/Car"); 
+const Car = require("../models/cars"); 
 const { isLoggedIn, isOwner } = require("../middleware/auth"); 
 
 const router = express.Router();
@@ -127,3 +127,5 @@ router.delete("/:id", isLoggedIn, isOwner(Car), async (req, res) => {
     res.status(500).render("error", { title: "Error", error: err });
   }
 });
+
+module.exports = router

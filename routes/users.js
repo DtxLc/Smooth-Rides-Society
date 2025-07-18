@@ -1,6 +1,6 @@
 const express = require("express");
-const User = require("../models/User"); 
-const Car = require("../models/Car"); 
+const User = require("../models/user"); 
+const Car = require("../models/cars"); 
 const { isLoggedIn } = require("../middleware/auth");
 
 const router = express.Router();
@@ -85,3 +85,5 @@ router.put("/:id", isLoggedIn, async (req, res) => {
     });
   }
 });
+
+module.exports = router

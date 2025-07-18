@@ -1,5 +1,5 @@
 const express = require("express");
-const User = require("../models/User"); 
+const User = require("../models/user"); 
 const { isLoggedIn, isNotLoggedIn } = require("../middleware/auth"); 
 
 const router = express.Router();
@@ -118,3 +118,5 @@ router.get("/logout", isLoggedIn, (req, res) => {
     res.redirect("/");
   });
 });
+
+module.exports = router

@@ -40,3 +40,9 @@ const isOwner = (model) => {
     }
   }
 }
+
+module.exports = {
+  isOwner,
+  isLoggedIn,
+  isNotLoggedIn,
+}

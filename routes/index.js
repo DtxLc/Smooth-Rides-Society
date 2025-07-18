@@ -1,5 +1,6 @@
 const express = require("express");
-const Car = require("../models/Car");
+const Car = require("../models/cars");
+const { model } = require("mongoose");
 
 const router = express.Router();
 
@@ -22,3 +23,5 @@ router.get("/", async (req, res) => {
 router.get("/about", (req, res) => {
   res.render("about", { title: "About SuperCars" });
 });
+
+module.exports = router

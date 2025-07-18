@@ -1,10 +1,10 @@
-const express = require("express");
 const session = require("express-session");
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const MongoStore = require("connect-mongo");
 const path = require("path");
+const express = require("express");
 
 // Load environment variables
 dotenv.config();
@@ -14,7 +14,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Set up __dirname equivalent for ES modules
-const __dirname = path.resolve(); //current directory
+//const __dirname = path.resolve(); //current directory
 
 // Connect to MongoDB
 mongoose

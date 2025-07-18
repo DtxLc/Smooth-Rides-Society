@@ -329,16 +329,6 @@ main {
 
 .hero h1 {
   margin-bottom: 1.5rem;
-  animation: titleGlow 3s ease-in-out infinite alternate;
-}
-
-@keyframes titleGlow {
-  from {
-    text-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
-  }
-  to {
-    text-shadow: 0 0 40px rgba(6, 182, 212, 0.8);
-  }
 }
 
 .hero p {

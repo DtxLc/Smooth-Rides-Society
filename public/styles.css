@@ -34,9 +34,9 @@
   --border-primary: 1px solid #374151;
 
   /* Transitions */
-  --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: none;
+  --transition-smooth: none;
+  --transition-slow: none;
 }
 
 /* Base Reset & Typography */

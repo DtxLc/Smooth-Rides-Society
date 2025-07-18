@@ -477,7 +477,6 @@ main {
 .car-owner a {
   color: var(--accent-cyan);
   text-decoration: none;
-  transition: var(--transition-fast);
 }
 
 .car-owner a:hover {

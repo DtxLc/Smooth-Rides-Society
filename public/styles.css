@@ -409,7 +409,6 @@ main {
   border: var(--border-primary);
   border-radius: var(--border-radius-lg);
   overflow: hidden;
-  transition: var(--transition-smooth);
 }
 
 .car-card:hover {

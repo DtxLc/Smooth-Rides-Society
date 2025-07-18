@@ -319,7 +319,7 @@ main {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: var(--primary-gradient);
+  background: var(--surface-primary);
 }
 
 .hero-content {

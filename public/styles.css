@@ -669,11 +669,6 @@ main {
   }
 }
 
-.car-card,
-.feature {
-  animation: fadeInUp 0.6s ease-out;
-}
-
 .car-card:nth-child(2) {
   animation-delay: 0.1s;
 }

@@ -818,8 +818,6 @@ a:focus {
   font-size: 1rem;
   font-family: inherit;
   line-height: 1.5;
-  transition: var(--transition-smooth);
-  backdrop-filter: blur(5px);
   resize: vertical;
   min-height: 100px;
 }

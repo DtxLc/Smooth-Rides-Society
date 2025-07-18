@@ -40,20 +40,24 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
 // Session configuration
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET || "super-secret-key",
-    resave: false,
-    saveUninitialized: false,
-    store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI,
-      ttl: 14 * 24 * 60 * 60, // 14 days
-    }),
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
-    },
-  }),
-);
+const sessionConfig = {
+  secret: process.env.SESSION_SECRET || "super-secret-key",
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+  },
+};
+
+// Only use MongoDB store if URI is provided
+if (process.env.MONGODB_URI) {
+  sessionConfig.store = MongoStore.create({
+    mongoUrl: process.env.MONGODB_URI,
+    ttl: 14 * 24 * 60 * 60, // 14 days
+  });
+}
+
+app.use(session(sessionConfig));
 
 // Make user data available to all templates
 app.use((req, res, next) => {

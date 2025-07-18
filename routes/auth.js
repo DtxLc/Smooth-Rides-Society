@@ -1,6 +1,6 @@
 const express = require("express");
-const User = require("../models/user"); 
-const { isLoggedIn, isNotLoggedIn } = require("../middleware/auth"); 
+const User = require("../models/user");
+const { isLoggedIn, isNotLoggedIn } = require("../middleware/auth");
 
 const router = express.Router();
 
@@ -65,6 +65,16 @@ router.post("/register", isNotLoggedIn, async (req, res) => {
   try {
     const { username, email, password, confirmPassword } = req.body;
 
+    // Basic validation
+    if (!username || !email || !password || !confirmPassword) {
+      return res.render("auth/register", {
+        title: "Register",
+        error: "All fields are required",
+        username,
+        email,
+      });
+    }
+
     // Validate passwords match
     if (password !== confirmPassword) {
       return res.render("auth/register", {
@@ -75,31 +85,55 @@ router.post("/register", isNotLoggedIn, async (req, res) => {
       });
     }
 
-    // Check if user already exists
-    const existingUser  = await User.findOne({ $or: [{ username }, { email }] });
-    if (existingUser ) {
+    // Validate password length
+    if (password.length < 6) {
       return res.render("auth/register", {
         title: "Register",
-        error: "Username or email already in use",
+        error: "Password must be at least 6 characters long",
         username,
         email,
       });
     }
 
-    // Create new user
-    const newUser  = new User({ username, email, password });
-    await newUser .save();
+    // Only check database if MongoDB is connected
+    if (process.env.MONGODB_URI) {
+      // Check if user already exists
+      const existingUser = await User.findOne({
+        $or: [{ username }, { email }],
+      });
+      if (existingUser) {
+        return res.render("auth/register", {
+          title: "Register",
+          error: "Username or email already in use",
+          username,
+          email,
+        });
+      }
 
-    // Set user in session
-    req.session.user = {
-      _id: newUser ._id,
-      username: newUser .username,
-      email: newUser .email,
-      profilePicture: newUser .profilePicture,
-    };
+      // Create new user
+      const newUser = new User({ username, email, password });
+      await newUser.save();
+
+      // Set user in session
+      req.session.user = {
+        _id: newUser._id,
+        username: newUser.username,
+        email: newUser.email,
+        profilePicture: newUser.profilePicture,
+      };
+    } else {
+      // For development without database - create mock user session
+      req.session.user = {
+        _id: "dev-user-" + Date.now(),
+        username: username,
+        email: email,
+        profilePicture: "/images/default-profile.png",
+      };
+    }
 
     res.redirect("/cars");
   } catch (err) {
+    console.error("Registration error:", err);
     res.render("auth/register", {
       title: "Register",
       error: "An error occurred. Please try again.",
@@ -119,4 +153,4 @@ router.get("/logout", isLoggedIn, (req, res) => {
   });
 });
 
-module.exports = router
+module.exports = router;

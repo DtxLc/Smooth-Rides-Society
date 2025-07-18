@@ -258,8 +258,6 @@ main {
   padding: 0.5rem;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-10px);
-  transition: var(--transition-smooth);
   box-shadow: var(--shadow-card);
 }
 

@@ -144,14 +144,14 @@ main {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent-red) 0%, #dc2626 100%);
+  background: var(--accent-red);
   color: white;
-  box-shadow: var(--glow-primary);
+  box-shadow: var(--shadow-card);
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--glow-accent);
+  background: #dc2626;
+  box-shadow: var(--shadow-hover);
   color: white;
 }
 

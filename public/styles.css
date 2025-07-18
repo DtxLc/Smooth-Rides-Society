@@ -433,8 +433,6 @@ main {
   border-radius: var(--border-radius-lg);
   overflow: hidden;
   transition: var(--transition-smooth);
-  backdrop-filter: blur(10px);
-  position: relative;
 }
 
 .car-card::before {

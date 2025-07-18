@@ -811,7 +811,6 @@ a:focus {
   padding: 3rem;
   width: 100%;
   max-width: 500px;
-  backdrop-filter: blur(10px);
   box-shadow: var(--shadow-card);
 }
 

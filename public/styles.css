@@ -577,9 +577,7 @@ main {
 }
 
 .feature:hover {
-  transform: translateY(-5px);
   border-color: var(--accent-cyan);
-  box-shadow: var(--glow-accent);
 }
 
 /* View All Section */

@@ -211,12 +211,10 @@ main {
 .logo i {
   font-size: 2rem;
   color: var(--accent-red);
-  filter: drop-shadow(0 0 10px var(--accent-red));
 }
 
 .logo a:hover {
   color: var(--accent-cyan);
-  text-shadow: var(--glow-accent);
 }
 
 .main-nav ul {
